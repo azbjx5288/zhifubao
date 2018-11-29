@@ -1,0 +1,46 @@
+﻿//直接在浏览器控制台控制输出模拟
+var ws = new WebSocket('ws://172.16.30.190:7272');
+ws.open = function(evt) {
+    console.log("连接成功");
+    
+}
+ws.onmessage = function(evt) {
+    console.log("Received message" + evt.data);
+}
+ws.onclose = function(evt) {
+    console.log("已断开");
+}
+
+//登陆接口
+ws.send('{"c":"login","a":"index","p":{"account":"639179552073"}}')
+返回成功：{"s":1,"c":"login_index","d":"登陆成功!","k":0} 成功标识 【s==1】
+返回失败：{"k":0,"s":0,"c":"login_index","d":"登陆失败!"} 失败标识 【s==0】
+
+
+//推送二维码图片过来
+ws.send('{"c":"qrcode","a":"push","p":{"url":"https:\/\/qr.alipay.com\/flx05429zy2swub8wpbomd6?t=1542702403542","amount":"0.01","type":1}}')
+推送成功：{"s":1,"c":"qrcode_push","d":"新增二维码成功","k":0}  【s==1】
+推送失败: {"k":0,"s":0,"c":"qrcode_push","d":"请先登录"}  【s==0】
+
+
+如果是服务端主动推送一个消息给客户端：
+消息主体格式：
+{"s":1,"c":"get_qrcode","d":{"amount":"1","remark":"备注"},"k":0}
+
+
+推送给服务端需要确定c：表示控制器，a表示方法  p 表示一个数组【对应的java hash吧】 需要以json对象格式推送
+
+服务端主动退给客户端需要确定好C：表示返回的具体意思，例如get_qrcode 表示服务端主动要做的事。
+
+
+主动推送收到的钱
+ws.send('{"c":"record","a":"save","p":{"amount":"10.05","type":1,"finshTime":"2018-11-22 15:57"}}')
+
+退出账号
+ws.send('{"c":"login","a":"logout","p":{"account":"639179552073"}}')
+
+
+
+{"m":"ping","f":"index"}
+
+{"s":1,"c":"ping_ping","d":1542890968615,"k":0}

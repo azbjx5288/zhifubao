@@ -1,0 +1,26 @@
+浏览器测试：
+
+①
+var ws = new WebSocket("ws://116.66.238.31:7272");
+
+ws.onopen = function(evt) { 
+  console.log("Connection open ..."); 
+};
+
+ws.onmessage = function(evt) {
+  console.log( "Received Message: " + evt.data);
+};
+
+ws.onclose = function(evt) {
+  console.log("Connection closed.");
+};  
+
+
+
+②
+ws.send('{"c":"login","a":"index"}')
+
+
+
+③
+websocket核心：重连 拉起 心跳 解析 消息转发
