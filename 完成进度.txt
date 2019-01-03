@@ -16,3 +16,6 @@ https://www.paysapi.com/
 13119641418  
 14749895641
 13059255029  
+
+
+http://47.94.210.9:66/admin/index/login    admin   admin
