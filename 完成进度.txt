@@ -17,5 +17,8 @@ https://www.paysapi.com/
 14749895641
 13059255029  
 
+https://www.paysapi.com/
 
 http://47.94.210.9:66/admin/index/login    admin   admin
+
+http://x.qakmak.com/demo/  ÑİÊ¾ÍøÕ¾
